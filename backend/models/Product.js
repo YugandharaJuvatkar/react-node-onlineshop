@@ -1,25 +1,54 @@
-const mongoose = require("mongoose");
+const Joi = require('joi'); // it is used for validation purpose
+const mongoose = require('mongoose');
+const { product_typeSchema } = require('./product_type');
 
-const ProductSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-    },
-    price: {
-      type: String,
-      required: true,
-    },
-    quantity: {
-      type: Number,
-      required: true,
-    },
-    description: {
-      type: String,
-      required: true,
-    },
+const Product = mongoose.model('Products', new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 3,
+    maxlength: 255
   },
-  { timestamps: true }
-);
+  price: {
+    type: Number,
+    required: true,
+    min: 0
 
-module.exports = mongoose.model("Product", ProductSchema);
+  },
+
+  // product_type: {
+  //   type: product_typeSchema,
+  //   required: true
+  // },
+  numberInStock: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 255
+  },
+  decscription: {
+    type: String,
+    required: true,
+  },
+  imageUrl: {
+    type: String,
+    required: true
+  }
+}));
+
+function validateProduct(product) {
+  const schema = {
+    name: Joi.string().min(5).max(50).required(),
+    price: Joi.number().min(0).required(),
+    //product_typeId: Joi.objectId().required(),
+    numberInStock: Joi.number().min(0).required(),
+    decscription : Joi.string().required(),
+    imageUrl:Joi.string().required()
+  };
+
+  return Joi.validate(product, schema);
+}
+
+exports.Product = Product;
+exports.validate = validateProduct;
