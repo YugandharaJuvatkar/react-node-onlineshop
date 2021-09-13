@@ -18,10 +18,9 @@ const HomeScreen = () => {
     dispatch(listProducts());
   }, [dispatch]);
 
-
   console.log(products);
   return (
-    <div className="homescreen">
+    <div className="homescreen" aria-live="polite">
       <h2 className="homescreen__title">Our Latest Products</h2>
       <div className="homescreen__products">
         {loading ? (
@@ -29,7 +28,6 @@ const HomeScreen = () => {
         ) : error ? (
           <h2>{error}</h2>
         ) : (
-          
           products.map((product) => (
             <Product
               key={product._id}

@@ -118,7 +118,7 @@ const data = [
     },
     {
         name: "Flats ",
-        imageUrl: "https://images.unsplash.com/photo-1619315970522-f9604be23f18?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+        imageUrl: "https://m.media-amazon.com/images/I/61oMNmMsGCL._UY695_.jpg",
         price: 250, decscription: "This is Flats Description", numberInStock: 12
     }
 

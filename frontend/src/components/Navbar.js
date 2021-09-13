@@ -12,7 +12,7 @@ const Navbar = ({ click, user }) => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" aria-live="polite">
       <div className="navbar__logo">
         <h2>Online Shop</h2>
       </div>

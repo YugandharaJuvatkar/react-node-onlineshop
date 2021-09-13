@@ -1,14 +1,12 @@
-import './ProductScreen.css';
+import "./ProductScreen.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 
 import { getProductDetails } from "../redux/actions/productActions";
 import { addToCart } from "../redux/actions/cartActions";
 
-const ProductScreen = ({match, history}) => {
-
-    const [qty, setQty] = useState(1);
+const ProductScreen = ({ match, history }) => {
+  const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.getProductDetails);
@@ -32,9 +30,14 @@ const ProductScreen = ({match, history}) => {
         <h2>{error}</h2>
       ) : (
         <>
-          <div className="productscreen__left">
+          <div className="productscreen__left" aria-live="polite">
             <div className="left__image">
-              <img src={product.imageUrl} width="350" height="300" alt={product.name} />
+              <img
+                src={product.imageUrl}
+                width="350"
+                height="300"
+                alt={product.name}
+              />
             </div>
             <div className="left__info">
               <p className="left__name">{product.name}</p>
@@ -65,7 +68,11 @@ const ProductScreen = ({match, history}) => {
                 </select>
               </p>
               <p>
-                <button type="button" onClick={addToCartHandler} className="add__btn">
+                <button
+                  type="button"
+                  onClick={addToCartHandler}
+                  className="add__btn"
+                >
                   Add To Cart
                 </button>
               </p>
